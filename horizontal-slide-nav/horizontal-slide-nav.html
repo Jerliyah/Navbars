@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Horizontal Slide Nav</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- ================
+    ------ Styling ------
+    ================= -->
+    <style>
+        nav {
+            font-family: sans-serif;
+            display: flex;
+        }
+
+        ul {
+            display: flex;
+            list-style: none;
+            margin: 0 0 0 auto;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: initial;
+        }
+
+
+        ul.main-menu {
+            background: linear-gradient(to left, #99ccff, #ccccff);
+            margin: 0;
+            position: relative;
+            width: 100%;
+        }
+
+        .main-menu > li {
+            padding: 1em;
+            border-left: 2px solid transparent;
+            border-right: 2px solid transparent;
+        }
+
+        .main-menu > li.active {
+            order: 1;
+            margin-left: auto;
+        }
+
+        .main-menu > li:hover {
+            background: radial-gradient(transparent 40%,rgba(255,255,255,0.5));
+            color: white;
+            border-color: white;
+        }
+
+
+        .subnav {
+            z-index: -1;
+            opacity: 0;
+            background: linear-gradient(to left, #99ccff, #ccccff);
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: calc(100% - 10em);
+            
+            transition: all 0.5s;
+        }
+
+        .subnav.active {
+            z-index: 1;
+            opacity: 1;
+            left: 0;
+            
+            display: flex;
+        }
+
+        .subnav > li {
+            padding: 1em;
+            color: white;
+            border-left: 2px solid transparent;
+            border-right: 2px solid transparent;
+        }
+
+        .subnav > li:hover {
+            background: radial-gradient(transparent 40%,rgba(0,0,0, 0.5));
+            color: black;
+            border-color: black;
+        }
+
+
+        @media screen and (max-width: 800px) {
+            .main-menu {
+                flex-direction: column;
+            }
+            
+            .main-menu > li.active {
+                order: -1;
+            }
+            
+            .subnav {
+                flex-direction: column;
+                height: 100%;
+            }
+        }
+    </style>
+
+
+    <!-- ================
+    ------ Content ------
+    ================= -->
+    <nav>
+        <ul class="main-menu">
+            <li>
+                <a href="#">Option 1</a>
+            </li>
+            <li>
+                <a href="#">Option 2</a>
+            </li>
+            <li>
+                <a href="#">DropDown Option</a>
+                <ul class="subnav">
+                    <li><a href="#"> Subnav 1</a></li>
+                    <li><a href="#"> Subnav 2</a></li>
+                    <li><a href="#"> Subnav 3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Option 4</a>
+            </li>
+            <li
+                ><a href="#">Option 5</a>
+            </li>
+        </ul> <!-- End of .main-menu -->
+    </nav>
+
+
+    <!-- ================
+    ------ Actions ------
+    ================= -->
+    <script>
+        let options = Array.from( document.querySelectorAll('.main-menu > li') )
+        let nav_map = []
+
+        // Attach respective sub nav
+        options.forEach( (option) => {
+            nav_map.push( {
+                "option": option,
+                "subnav": option.querySelector('.subnav')
+            })
+        })
+
+        nav_map.forEach( (obj) => {
+            if( obj.subnav ) {
+                obj.option.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    
+                    obj.option.classList.toggle('active')
+                    obj.subnav.classList.toggle('active')
+                })
+
+                // Specify width
+                obj.subnav.style.width = `calc(100% - ${obj.option.offsetWidth}px)`
+            }
+        })
+    </script>
+    
+</body>
+</html>
