@@ -12,6 +12,7 @@ Smaller screens
 
 ![small screen](horizontal-slide-nav/screenshots/small-screen.gif)
 
+<br/><br/>
 
 
 ## Dropdown Nav
