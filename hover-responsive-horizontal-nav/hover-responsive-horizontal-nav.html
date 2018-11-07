@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ============= Dependencies ================ -->
+    <!-- Font Awesome (icons) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <title>Nav - hover, responsive, horizontal</title>
+</head>
+<body>
+    <!-- Styling -->
+    <style>
+        /* General page stuff */
+        body, body * {
+            box-sizing:border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        /* End of general page stuff */
+
+
+        #full-nav-ctn {
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            font-family: sans-serif;
+
+            /* Put theme color variables here */
+            --theme-1: #75b4bb;
+            --theme-2: #c56367;
+            --theme-3: #343a40;
+        }
+
+        /* Whatever the next sibling is (should be a container for content) */
+        #full-nav-ctn + * {
+            margin-top: 96px;
+        }
+
+        nav {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: space-around;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: inherit;
+            color: inherit;
+        }
+
+        .top.nav {
+            display: flex;
+            background-color: white;
+            padding: 1em;
+        }
+
+        a.logo {
+            margin-right: auto;
+        }
+
+        img.logo {
+            height: 1.7em;
+        }
+
+        button.search {
+            margin-right: 15px;
+            background: transparent;
+            border: none;
+            color: var(--theme-1);
+        }
+
+        button.search:hover {
+            font-size: 1.5em;
+        }
+
+        input.search {
+            display: none;
+            width: 50%;
+            margin-bottom: 0;
+        }
+
+        input.search.active {
+            display: inline-block;
+        }
+
+        .top.nav a[class*="button"] {
+            border-radius: 5px;
+            text-transform: uppercase;
+            color: white;
+            padding: 0.5em 2em;
+            font-weight: 550;
+            font-size: 14px;
+            margin: 0 1em;
+        }
+
+        .top.nav .button.one {
+            background: var(--theme-1);
+        }
+
+        .top.nav .button.two {
+            background: var(--theme-2);
+        }
+
+        .bottom.nav {
+            color: white;
+            font-weight: bold;
+            background: var(--theme-3);
+        }
+
+        .bottom.nav .menu {
+            padding: 1em 0;
+        }
+
+        .bottom.nav li.active {
+            border-bottom: 3px solid var(--theme-1);
+        }
+
+        .sub.nav {
+            margin-top: -1em;
+            background: var(--theme-2);
+            padding: 1em 0;
+            display: block;
+            opacity: 0;
+            
+            transition: margin 0.5s;
+        }
+        .sub.nav.active {
+            opacity: 1;
+            margin-top: 0;
+            transition: opacity 0.5s;
+        }
+
+        .sub-menu {
+            display: none;
+            font-weight: bold;
+            color: var(--theme-1);
+        }
+
+        .sub-menu.active {
+            display: flex;
+        }
+
+            /* Reponsivene to smaller screens */
+            @media screen and (max-width: 550px) {
+                /*Whatever the next sibling is (should be a container for content)*/
+                #full-nav-ctn + * {
+                    margin-top: 392px;
+                }
+                
+                .top.nav {
+                    flex-direction: column;
+                }
+                
+                .condensed-menu-ctn {
+                    display: flex;
+                }
+                
+                .bottom.nav {
+                    width: 50%;
+                    padding-right: 0;
+                }
+                
+                .bottom.nav > .menu {
+                    flex-direction: column;
+                }
+                
+                .bottom.nav li {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                
+                .bottom.nav li.active {
+                    border: none;
+                    background: var(--theme-blue);
+                    padding-left: 1em;
+                }
+                
+                .bottom.nav li > i {
+                    padding: 0 1em;
+                    font-size: 1.5em;
+                }
+                
+                .sub.nav {
+                    width: 50%;
+                }
+                
+                .sub.nav > .sub-menu {
+                    flex-direction: column
+                }
+            }
+    </style>
+
+
+    <!-- Functionality -->
+    <script>
+        window.onload = function(){
+        
+            // Needed DOM elements
+            let bottom_nav = document.querySelector('.bottom.nav')
+            let sub_nav = document.querySelector('.sub.nav')
+            
+            // Check screen width on load and on window change
+            screen_width_checker()
+            window.addEventListener("resize", screen_width_checker);
+            
+            
+            function screen_width_checker() {
+                // The checker for window width should be the same as CSS media query
+                let condensed_menu = window.innerWidth <= 550 //boolean
+            
+                if( condensed_menu ) { 
+                    bottom_nav.classList.replace('expanded', 'condensed')
+                    sub_nav.classList.replace('expanded', 'condensed')
+                    
+                    condensed_menu_handling()
+                }
+                else {
+                    remove_condensed_menu_stuff()
+                    
+                    bottom_nav.classList.replace('condensed', 'expanded')
+                    sub_nav.classList.replace('condensed', 'expanded')
+                    
+                    expanded_menu_handling()
+                }
+            }
+        
+        
+            function condensed_menu_handling() {
+                console.log("Attempt - condensed_menu_handling")
+                
+                let menu_options = Array.from( document.querySelectorAll("nav.condensed > .menu > li") )
+                
+                menu_options.forEach( (option) => {
+                    let children = Array.from( option.children )
+                    
+                    let arrow = document.createElement('i')
+                    arrow.classList.add('fa', 'fa-caret-right')
+                    
+                    if( ! children.includes(arrow) ) {
+                    console.log('arrow added')
+                    option.insertAdjacentElement('beforeend', arrow)
+                    }
+                    
+                })
+            
+                let expansion_icons = Array.from( document.querySelectorAll('nav i.fa-caret-right') )
+                
+                expansion_icons.forEach( (icon) => {
+                    icon.addEventListener('click', () => {
+                    
+                    // Remove old 'active' elements
+                    let old_actives = Array.from( document.querySelectorAll('nav .active') )
+                    old_actives.forEach( (thing) => {
+                        thing.classList.remove('active')
+                    })
+                    
+                    // Set this menu item to active
+                    icon.parentElement.classList.add('active')
+                    
+                    // Grab relative sub-menu
+                    let keyword = icon.parentElement.dataset.activate
+                    let sub_menu = document.querySelector(`[data-activator="${keyword}"]`);
+                    
+                    // Activate relative sub-menu and its container
+                    sub_nav.classList.add('active')
+                    sub_menu.classList.add('active')
+                    
+                    })
+                })
+            
+                console.log("Success - condense_menu_handling")
+            
+            }
+        
+        
+            function remove_condensed_menu_stuff() {
+                let condensed_menu_stuff = Array.from( document.querySelectorAll('nav i.fa-caret-right') )
+                
+                condensed_menu_stuff.forEach( (thing) => {
+                    thing.remove()
+                })
+            }
+        
+            
+            function expanded_menu_handling() {
+                let activators = Array.from( document.querySelectorAll("nav.expanded > .menu > li") )
+                    
+                activators.forEach( (activator) => {
+                    
+                    activator.addEventListener('mouseenter', (e) => {
+                    // Remove 'active' from any other siblings
+                    let old_actives = Array.from( document.querySelectorAll('nav .active') )
+                    old_actives.forEach( (thing) => {
+                        thing.classList.remove('active')
+                    })
+                    
+                    // Set this menu item to active
+                    e.target.classList.add('active')
+                    
+                    // Grab relative sub-menu
+                    let keyword = e.target.dataset.activate
+                    let sub_menu = document.querySelector(`[data-activator="${keyword}"]`);
+                    
+                    // Activate relative sub-menu and its container
+                    sub_nav.classList.add('active')
+                    sub_menu.classList.add('active')
+                    })
+                
+                }) // End of activators.forEach
+        
+        
+                bottom_nav.addEventListener('mouseleave', () => {
+                    
+                    // If the sub-nav isn't being hovered on...
+                    if( !document.querySelector('.sub.nav:hover') ) {
+                        
+                        // Close everything
+                        let active_stuff = Array.from( document.querySelectorAll('nav.active, nav .active') )
+                        active_stuff.forEach( (thing) => { thing.classList.remove('active') })
+                    }
+                })
+            
+            
+                sub_nav.addEventListener('mouseleave', () => {
+                    
+                    // If the bottom-nav isn't being hovered on...
+                    if( !document.querySelector('.bottom.nav:hover') ) {
+                    
+                    // Close everything
+                        let active_stuff = Array.from( document.querySelectorAll('nav.active, nav .active') )
+                        active_stuff.forEach( (thing) => { thing.classList.remove('active') })
+                    }
+                })
+            } //End of expanded_menu function
+        } // End of window.onload wrapper
+    </script>
+
+
+    <!-- HTML -->
+    <div id="full-nav-ctn">
+  
+        <nav class="top nav">
+            <a class="logo" href="#">
+                <img src="general-assets/logo.png" class="logo" alt="company logo">
+            </a>
+            
+            <!-- TODO: Search functionality -->
+            <form>
+                <input class="search" type="search" placeholder="search" aria-label="search">
+                <button class="search" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+              
+            <a class="button one" href="">Apply Now</a>
+            
+            <a class="button two" href="">Book A Tour</a>
+        </nav>
+          
+        <div class="condensed-menu-ctn">
+            <nav class="bottom nav expanded">
+                <ul class="menu">
+                    
+                    <li data-activate="about">
+                        <a href="" > About </a>
+                    </li>
+                    
+                    <li data-activate="resources">
+                    <a href="" > Resources </a>
+                    </li>
+                    
+                    <li data-activate="programs">
+                    <a href="" > Programs </a>
+                    </li>
+                    
+                    <li data-activate="events">
+                    <a href="" > Events </a>
+                    </li>
+                    
+                    <li data-activate="news">
+                    <a href="" > News </a>
+                    </li>
+                    
+                    <li data-activate="partner">
+                    <a href="" > Partner With Us </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <nav class="sub nav expanded">
+                <ul class="sub-menu" data-activator="about">
+                    <a href="">
+                        <li>Our Story</li>
+                    </a>
+                    
+                    <a href="">
+                        <li>Team</li>
+                    </a>
+                    
+                    <a href="">
+                        <li>Board</li>
+                    </a>
+                    
+                    <a href="">
+                        <li>FAQ</li>
+                    </a>
+                    
+                    <a href="">
+                        <li>Location</li>
+                    </a>
+                    
+                    <a href="">
+                        <li>Careers</li>
+                    </a>
+                    
+                    <a href="">
+                        <li>Contact Us</li>
+                    </a>
+                </ul>
+            
+                <ul class="sub-menu" data-activator="resources">
+                    <li>Skill Development</li>
+                    <li>Community</li>
+                    <li>Equipment</li>
+                </ul>
+            
+                <ul class="sub-menu" data-activator="programs">
+                    <li>Accelerated Incubation</li>
+                    <li>Product Engineering and Design Services</li>
+                    <li>Skills Development</li>
+                </ul>
+                
+                <ul class="sub-menu" data-activator="events">
+                    <li>Upcoming Events</li>
+                    <li>Host Your Event</li>
+                    <li>Fouth Revolution Awards</li>
+                </ul>
+                
+                <ul class="sub-menu" data-activator="news">
+                    <li>In the News</li>
+                    <li>Press Announcements</li>
+                    <li>Vides</li>
+                    <li>Blog</li>
+                    <li>Event Recap</li>
+                </ul>
+                
+                <ul class="sub-menu" data-activator="partner">
+                    <li>Corporate Partner Form</li>
+                    <li>Community Partner Form</li>
+                </ul>
+            </nav>
+        </div> <!-- End of .condensed-menu-ctn -->
+    </div>
+
+</body>
+</html>

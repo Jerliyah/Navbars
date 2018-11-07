@@ -1,7 +1,7 @@
 # Navbars
 A collection of navigation snippets
 
-
+<br/><br/><br/><br/>
 
 ## Horizontal Slide Nav
 Larger screens
@@ -12,7 +12,7 @@ Smaller screens
 
 ![small screen](horizontal-slide-nav/screenshots/small-screen.gif)
 
-<br/><br/>
+<br/><br/><br/><br/>
 
 
 ## Dropdown Nav
