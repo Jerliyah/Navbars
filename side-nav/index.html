@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Side Nav</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+    <style>
+        .j-navbar_left-side {
+            --top-nav-height: 100px;
+            --footer-height: 200px;
+
+            --font1: 'Times New Roman';
+            --font2: sans-serif;
+
+            background: black;
+            color: #f2f2f2;
+            height: calc( 100vh - var(--top-nav-height) );
+            position: fixed;
+            top: var(--top-nav-height);
+            text-align: center;
+            width: 300px;
+            letter-spacing: 1px;
+            overflow-y: auto;
+        }
+
+        .j-navbar_left-side.j-closed {
+            margin-left: -280px;
+        }
+
+        .j-navbar_left-side.j-opened + * {
+            margin-left: 300px !important;
+        }
+        .j-navbar_left-side.j-closed + * {
+            margin-left: 20px 1important;
+        }
+        
+        .j-navbar_left-side a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .j-navbar_left-side > #puller {
+            height: 100%;
+            right: 0;
+            top: 0;
+            position: absolute;
+            width: 20px;
+            align-items: center;
+            justify-content: center;
+            background: black;
+            color: gray;
+
+        }
+        @media screen and (max-width: 800px) {
+            .j-navbar_left-side > #puller {
+                display: flex;
+            }
+        }
+        @media screen and (min-width: 800px) {
+            .j-navbar_left-side > #puller {
+                display: none;
+            }
+        }
+        .j-navbar_left-side > #puller:hover,
+        .j-navbar_left-side > #puller:active {
+            background: gray;
+            color: black;
+        }
+
+
+        .j-navbar_left-side > header {
+            font-family: var(--font1);
+            padding: 2em 0;
+            font-size: 30px;
+        }
+
+        .j-navbar_left-side > ul {
+            font-family: var(--font2);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .j-navbar_left-side > ul li {
+            padding: 30px;
+            position: relative;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        .j-navbar_left-side > ul li:hover {
+            font-weight: bold;
+        }
+
+        .j-navbar_left-side > ul > a:not(:last-child) > li {
+            border-bottom: 1px solid gray
+        }
+
+        .j-navbar_left-side > ul li > i.fa-angle-right {
+            display: none;
+            position: absolute;
+            right: 30px;
+            font-size: 1.5em;
+        }
+        .j-navbar_left-side > ul li:hover > i.fa-angle-right {
+            display: inline-block;
+        }
+    </style>
+
+</head>
+<body>
+        <nav class="j-navbar_left-side">
+            <header>
+                Member <br> Portal
+            </header>
+            <ul>
+                <a href="">
+                    <li> Home <i class="fas fa-angle-right"></i></li>
+                </a>
+                <a href="">
+                    <li> My Membership <i class="fas fa-angle-right"></i></li>
+                </a>
+                <a href="">
+                    <li> Events <i class="fas fa-angle-right"></i></li>
+                </a>
+                <a href="">
+                    <li> Logout <i class="fas fa-angle-right"></i></li>
+                </a>
+            </ul>
+        
+            <div id="puller">
+                <!-- ::J:: Element assigned by JS (didn't use CSS content because that only works for ::before and ::after pseudo elements) -->
+                <i class="fas fa-angle-right"></i>
+                <!-- <i class="fas fa-angle-left"></i> -->
+            </div>
+        </nav>
+
+        <script>
+            // ::J::
+            // Wrap in IIFE to hide variables and allow for return statement
+            (function() {
+                // Looks at all of the potential targets...
+                let navs = Array.from( document.querySelectorAll('.j-navbar_left-side') );
+                    
+                // ...grabs the one that hasn't been registered yet
+                let target_nav = navs.find( (nav) => {
+                                    return !nav.dataset.jRegistered;
+                                });
+                                
+                // If all potential targets are accounted for, do nothing
+                if( !target_nav ) { return false; }
+                
+                
+                // --- The Magic --- //
+                // Register
+                target_nav.dataset.jRegistered = "true";
+                
+                // Selection
+                let nav_toggle = target_nav.querySelector('#puller');
+                
+                // Start offs
+                let breaking_point = 800; // Media Query
+                
+
+                check_window_width()
+                window.addEventListener('resize', check_window_width);
+
+                
+                function check_window_width() {
+                    if( window.innerWidth <= breaking_point ) {
+                        target_nav.classList.replace('j-opened', 'j-closed') || target_nav.classList.add('j-closed')
+                        activate_menu_toggling()
+                    }
+                    else {
+                        target_nav.classList.replace('j-closed', 'j-opened') || target_nav.classList.add('j-opened')
+                    }
+                }
+                
+
+                function activate_menu_toggling() {
+                    // Event Handlers
+                    nav_toggle.addEventListener('click', function() {
+                        if( target_nav.classList.contains('j-opened') ) { 
+                            target_nav.classList.replace('j-opened', 'j-closed');
+                            nav_toggle.innerHTML = '<i class="fas fa-angle-right"></i>'
+                        }
+                        else if( target_nav.classList.contains('j-closed') ) {
+                            target_nav.classList.replace('j-closed', 'j-opened');
+                            nav_toggle.innerHTML = '<i class="fas fa-angle-left"></i>'
+                        }
+                        else {
+                            // Worst case scenario, assume closed
+                            target_nav.classList.add('j-closed');
+                        }
+                    });
+                }
+            })();
+        </script>
+
+</body>
+</html>
+
