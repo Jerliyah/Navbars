@@ -24,18 +24,22 @@
         }
 
 
-        /* Class changes made with JS */
+        
+        /* ::J:: NOTE - Class changes made with JS */
+
         .j-navbar.logo-and-dropdowns {
+            /* ::J:: Editable */
             --theme-color: #00ccff;
             --accent-color:#99ccff;
-            --third-color: #666699;
+            --dropdown-color: #e6e6e6;
             --nav-bg: black;
+            --menu-text-color: white;
+            --dropdown-text-color: black;
 
             position: fixed;
             font-family: inherit, sans-serif;
             display: grid;
             background: var(--nav-bg);
-            color: white;
             width: 100%;
             z-index: 100;
         }
@@ -43,38 +47,37 @@
         .j-navbar.logo-and-dropdowns.j-large {
             grid-template-columns: auto 1fr;
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns a {
             text-decoration: none;
             color: inherit;
             display: inline-block;
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns ul {
             margin: 0;
             padding: 0;
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns li {
             list-style: none;
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns .bg-theme-color {
             background: var(--theme-color);
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns .j-container {
             position: relative;
             display: grid;
-            align-items: center;
         }
         .j-navbar.logo-and-dropdowns.j-small .j-container {
-            border-bottom: 1px solid var(--third-color);
+            border-bottom: 1px solid var(--dropdown-color);
             background: var(--nav-bg);
             z-index: 120;
             grid-template-columns: 1fr 1fr;
@@ -82,23 +85,23 @@
         .j-navbar.logo-and-dropdowns.j-large .j-container {
             grid-template-columns: 1fr;
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns .j-logo {
             margin: 1vh auto 1vh 10vw;
         }
         .j-navbar.logo-and-dropdowns.j-small .j-logo {
             margin-left: 10vw;
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns .j-logo > img {
             max-height: 60px;
             max-width: 50vw;
             border-radius: 5px;
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns .j-menu-toggle {
             display: none;
             padding: 0.5em 1em;
@@ -109,12 +112,13 @@
         }
         .j-navbar.logo-and-dropdowns.j-small .j-menu-toggle {
             display: inline-block;
+            align-self: center;
         }
         .j-navbar.logo-and-dropdowns.j-opened .j-menu-toggle {
             background: var(--accent-color)
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns.j-small .j-nav {
             position: relative;
             width: 100%;
@@ -138,51 +142,52 @@
         .j-navbar.logo-and-dropdowns.j-opened .j-nav {
             margin-top: 0;
         }
-        
+
         .j-navbar.logo-and-dropdowns.j-large .j-nav > li {
-          height: 100%;
+        height: 100%;
         }
-        .j-navbar.logo-and-dropdowns.j-large .j-nav > li:hover {
-            background: var(--accent-color);
-        }
-        
-        
+
         .j-navbar.logo-and-dropdowns .j-nav > li > a {
             padding: 0.5em 1em;
             width: 100%;
+            color: var(--menu-text-color);
         }
+
+
+        .j-navbar.logo-and-dropdowns .j-nav > li > a:hover,
+        .j-navbar.logo-and-dropdowns .j-nav > li > a:focus,
         .j-navbar.logo-and-dropdowns .j-nav > li > a:active,
         .j-navbar.logo-and-dropdowns .j-nav > li.j-opened > a {
-            background: var(--accent-color);
-            color: white;
+            background: var(--theme-color);
         }
         .j-navbar.logo-and-dropdowns.j-small .j-nav > li > a {
             width: 100%;
         }
         .j-navbar.logo-and-dropdowns.j-large .j-nav > li > a {
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns .j-nav > li > a > i.fa {
-          margin-left: 1em;
+        margin-left: 1em;
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns .j-dropdown {
             position: relative;
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns .j-dropdown > .j-dropdown-menu {
             max-height: 0;
             overflow-y: hidden;
-            background: var(--third-color);
+            background: var(--dropdown-color);
             transition: max-height 0.5s;
             padding: 0 2em;
+            color: var(--dropdown-text-color);
         }
         .j-navbar.logo-and-dropdowns.j-large .j-dropdown-menu {
             position: absolute;
@@ -193,15 +198,15 @@
             max-height: 100vh;
         }
         .j-navbar.logo-and-dropdowns.j-small .j-dropdown.j-opened > .j-dropdown-menu{
-          border-bottom: 3px solid var(--accent-color);
+        border-bottom: 3px solid var(--accent-color);
         }
-      
-        
+
+
         .j-navbar.logo-and-dropdowns .j-dropdown-menu > li:not(:last-child) {
             border-bottom: 1px solid var(--accent-color);
         }
-        
-        
+
+
         .j-navbar.logo-and-dropdowns .j-dropdown-menu > li > a {
             white-space: nowrap;
             padding: 0.5em 1em;
