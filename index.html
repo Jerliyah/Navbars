@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Navbars</title>
+
+    <style>
+         @import url('https://fonts.googleapis.com/css?family=Poppins:400,600');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 5vh 5vw;
+            background: linear-gradient(to bottom, #99ffcc, #6699ff);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            text-align: center;
+        }
+
+        body, body * {
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 50px;
+            margin: 0 0 1em 0;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin: 0.5em;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            border: 3px solid white;
+            background: transparent;
+            padding: 0.5em 1em;
+            font-size: 20px;
+            
+        }
+        a:hover, a:focus, a:active {
+            background: linear-gradient(
+                #ffcc66, #ff9966);
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Navbars</h1>
+    <ul>
+        <li>
+            <a href="dropdown-nav/dropdown-nav.html">
+                Dropdown Nav
+            </a>
+        </li>
+        <li>
+            <a href="horizontal-slide-nav/horizontal-slide-nav.html">
+                Horizontal Slide Nav
+            </a>
+        </li>
+    </ul>
+</body>
+</html>
