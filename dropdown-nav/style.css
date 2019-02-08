@@ -1,0 +1,243 @@
+
+/* :: Presentation :: */
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, #74ebd5, #acb6e5);
+    font-family: sans-serif;
+}
+
+body, body * {
+    box-sizing: border-box;
+}
+
+
+/* :: Customizer :: */
+.j-navbar.logo-and-dropdowns {
+    --theme-color: #00ccff;
+    --accent-color:#99ccff;
+    --dropdown-color: #e6e6e6;
+    --nav-bg: black;
+    --menu-text-color: white;
+    --dropdown-text-color: black;
+    --number-of-options: 5;
+}
+
+
+
+
+/* ====================================================== */
+
+/* :: Static styling :: */
+
+/*
+DONT TOUCH! (unless what you want can't be acheived with the customizer above)
+NOTE - Class changes made with JS 
+*/
+
+.j-navbar.logo-and-dropdowns {
+
+position: fixed;
+    top: 0;
+    font-family: inherit;
+    display: grid;
+    background: var(--nav-bg);
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 5px 10px rgba(0,0,0, 0.5);
+}
+
+.j-navbar.logo-and-dropdowns + * {
+    margin-top: 77px;
+}
+
+.j-navbar.logo-and-dropdowns.large {
+    grid-template-columns: auto 1fr;
+}
+
+
+.j-navbar.logo-and-dropdowns a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+
+.j-navbar.logo-and-dropdowns ul {
+    margin: 0;
+    padding: 0;
+}
+
+
+.j-navbar.logo-and-dropdowns li {
+    list-style: none;
+}
+
+
+.j-navbar.logo-and-dropdowns .bg-theme-color {
+    background: var(--theme-color);
+    color: white !important;
+}
+
+
+.j-navbar.logo-and-dropdowns .logo-container {
+    position: relative;
+    display: grid;
+}
+.j-navbar.logo-and-dropdowns.small .logo-container {
+    background: var(--nav-bg);
+    z-index: 120;
+    grid-template-columns: 1fr 1fr;
+}
+.j-navbar.logo-and-dropdowns.large .logo-container {
+    grid-template-columns: 1fr;
+}
+
+
+.j-navbar.logo-and-dropdowns .logo {
+    margin: 1vh auto 1vh 5vw;
+}
+
+
+.j-navbar.logo-and-dropdowns .logo > img {
+    max-height: 60px;
+    max-width: 50vw;
+    border-radius: 5px;
+}
+
+
+.j-navbar.logo-and-dropdowns .menu-toggle {
+    display: none;
+    padding: 0.5em 1em;
+    margin: 1vh 10vw 1vh auto;
+    border-radius: 5px;
+    background: var(--theme-color);
+    transition: background 0.5s; 
+}
+.j-navbar.logo-and-dropdowns.small .menu-toggle {
+    display: inline-block;
+    align-self: center;
+}
+.j-navbar.logo-and-dropdowns.opened .menu-toggle {
+    background: var(--accent-color)
+}
+
+
+.j-navbar.logo-and-dropdowns.small .j-nav {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 110;
+    margin-top: -150%;
+    margin-bottom: 1em;
+    transition: margin-top 0.5s;
+}
+.j-navbar.logo-and-dropdowns.large .j-nav {
+    display: grid;
+    /* Repeat number needs to match the number of menu items */
+    grid-template-columns: repeat( var(--number-of-options) , max-content);
+    align-self: center;
+    align-items: center;
+    justify-self: flex-end;
+    flex-direction: row;
+    margin-right: 5vw;
+    text-align: center;
+    height: 100%;
+}
+.j-navbar.logo-and-dropdowns.opened .j-nav {
+    margin-top: 0;
+}
+
+.j-navbar.logo-and-dropdowns .j-nav > li {
+    color: var(--menu-text-color);
+}
+
+.j-navbar.logo-and-dropdowns.large .j-nav > li {
+    margin: 5px;
+}
+
+
+.j-navbar.logo-and-dropdowns .j-nav > li > a {
+    padding: 10px;
+    width: 100%;
+    color: inherit;
+}
+
+.j-navbar.logo-and-dropdowns .j-nav > li a.sign-up-button {
+    border-radius: 10px;
+    text-transform: uppercase;
+    padding: 10px 15px;
+}
+
+.j-navbar.logo-and-dropdowns.small .j-nav > li a.sign-up-button {
+    width: auto;
+}
+
+
+.j-navbar.logo-and-dropdowns .j-nav > li > a:hover,
+.j-navbar.logo-and-dropdowns .j-nav > li > a:focus,
+.j-navbar.logo-and-dropdowns .j-nav > li > a:active,
+.j-navbar.logo-and-dropdowns .j-nav > li.opened > a {
+    background: var(--accent-color);
+}
+.j-navbar.logo-and-dropdowns.small .j-nav > li > a {
+    width: 100%;
+}
+.j-navbar.logo-and-dropdowns.large .j-nav > li > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.j-navbar.logo-and-dropdowns .j-nav > li > a > i.fa {
+    margin-left: 1em;
+}
+
+
+.j-navbar.logo-and-dropdowns .j-dropdown {
+    position: relative;
+}
+
+
+.j-navbar.logo-and-dropdowns .j-dropdown > .j-dropdown-menu {
+    max-height: 0;
+    overflow-y: hidden;
+    background: var(--dropdown-color);
+    transition: max-height 0.5s;
+    padding: 0 2em;
+    color: var(--dropdown-text-color);
+}
+.j-navbar.logo-and-dropdowns.large .j-dropdown-menu {
+    position: absolute;
+    left: 0;
+}
+.j-navbar.logo-and-dropdowns .j-dropdown.opened > .j-dropdown-menu {
+    margin-top: 0;
+    max-height: 100vh;
+}
+.j-navbar.logo-and-dropdowns.small .j-dropdown.opened > .j-dropdown-menu {
+border-bottom: 3px solid var(--accent-color);
+}
+
+
+.j-navbar.logo-and-dropdowns .j-dropdown-menu > li:not(:last-child) {
+    border-bottom: 1px solid var(--accent-color);
+}
+
+
+.j-navbar.logo-and-dropdowns .j-dropdown-menu > li > a {
+    white-space: nowrap;
+    padding: 0.5em 1em;
+    transition: all 0.2s;
+}
+.j-navbar.logo-and-dropdowns .j-dropdown-menu > li > a:hover {
+    transform: scale(1.1);
+}
+.j-navbar.logo-and-dropdowns .j-dropdown-menu > li > a:active {
+    font-weight: bold;
+}
+.j-navbar.logo-and-dropdowns.small .j-dropdown-menu > li > a {
+    width: 100%;
+}

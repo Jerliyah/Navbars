@@ -7,241 +7,32 @@
 
     <title>Dropdown Menu</title>
 
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- Styling -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <style>
-        body {
-            margin: 0;
-            height: 300vh;
-            background: linear-gradient(lightblue, purple);
-            font-family: sans-serif;
-        }
-
-        body, body * {
-            box-sizing: border-box;
-        }
-
-
-        
-        /* ::J:: NOTE - Class changes made with JS */
-
-        .j-navbar.logo-and-dropdowns {
-            /* ::J:: Editable */
-            --theme-color: #00ccff;
-            --accent-color:#99ccff;
-            --dropdown-color: #e6e6e6;
-            --nav-bg: black;
-            --menu-text-color: white;
-            --dropdown-text-color: black;
-
-            position: fixed;
-            font-family: inherit, sans-serif;
-            display: grid;
-            background: var(--nav-bg);
-            width: 100%;
-            z-index: 100;
-        }
-
-        .j-navbar.logo-and-dropdowns.j-large {
-            grid-template-columns: auto 1fr;
-        }
-
-
-        .j-navbar.logo-and-dropdowns a {
-            text-decoration: none;
-            color: inherit;
-            display: inline-block;
-        }
-
-
-        .j-navbar.logo-and-dropdowns ul {
-            margin: 0;
-            padding: 0;
-        }
-
-
-        .j-navbar.logo-and-dropdowns li {
-            list-style: none;
-        }
-
-
-        .j-navbar.logo-and-dropdowns .bg-theme-color {
-            background: var(--theme-color);
-        }
-
-
-        .j-navbar.logo-and-dropdowns .j-container {
-            position: relative;
-            display: grid;
-        }
-        .j-navbar.logo-and-dropdowns.j-small .j-container {
-            border-bottom: 1px solid var(--dropdown-color);
-            background: var(--nav-bg);
-            z-index: 120;
-            grid-template-columns: 1fr 1fr;
-        }
-        .j-navbar.logo-and-dropdowns.j-large .j-container {
-            grid-template-columns: 1fr;
-        }
-
-
-        .j-navbar.logo-and-dropdowns .j-logo {
-            margin: 1vh auto 1vh 10vw;
-        }
-        .j-navbar.logo-and-dropdowns.j-small .j-logo {
-            margin-left: 10vw;
-        }
-
-
-        .j-navbar.logo-and-dropdowns .j-logo > img {
-            max-height: 60px;
-            max-width: 50vw;
-            border-radius: 5px;
-        }
-
-
-        .j-navbar.logo-and-dropdowns .j-menu-toggle {
-            display: none;
-            padding: 0.5em 1em;
-            margin: 1vh 10vw 1vh auto;
-            border-radius: 5px;
-            background: var(--theme-color);
-            transition: background 0.5s; 
-        }
-        .j-navbar.logo-and-dropdowns.j-small .j-menu-toggle {
-            display: inline-block;
-            align-self: center;
-        }
-        .j-navbar.logo-and-dropdowns.j-opened .j-menu-toggle {
-            background: var(--accent-color)
-        }
-
-
-        .j-navbar.logo-and-dropdowns.j-small .j-nav {
-            position: relative;
-            width: 100%;
-            text-align: center;
-            position: relative;
-            z-index: 110;
-            margin-top: -100%;
-            transition: margin-top 0.5s;
-        }
-        .j-navbar.logo-and-dropdowns.j-large .j-nav {
-            display: grid;
-            /* Repeat number needs to match the number of menu items */
-            grid-template-columns: repeat(5, max-content);
-            align-self: center;
-            justify-self: flex-end;
-            flex-direction: row;
-            margin-right: 5vw;
-            text-align: center;
-            height: 100%;
-        }
-        .j-navbar.logo-and-dropdowns.j-opened .j-nav {
-            margin-top: 0;
-        }
-
-        .j-navbar.logo-and-dropdowns.j-large .j-nav > li {
-        height: 100%;
-        }
-
-        .j-navbar.logo-and-dropdowns .j-nav > li > a {
-            padding: 0.5em 1em;
-            width: 100%;
-            color: var(--menu-text-color);
-        }
-
-
-        .j-navbar.logo-and-dropdowns .j-nav > li > a:hover,
-        .j-navbar.logo-and-dropdowns .j-nav > li > a:focus,
-        .j-navbar.logo-and-dropdowns .j-nav > li > a:active,
-        .j-navbar.logo-and-dropdowns .j-nav > li.j-opened > a {
-            background: var(--theme-color);
-        }
-        .j-navbar.logo-and-dropdowns.j-small .j-nav > li > a {
-            width: 100%;
-        }
-        .j-navbar.logo-and-dropdowns.j-large .j-nav > li > a {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        }
-
-
-        .j-navbar.logo-and-dropdowns .j-nav > li > a > i.fa {
-        margin-left: 1em;
-        }
-
-
-        .j-navbar.logo-and-dropdowns .j-dropdown {
-            position: relative;
-        }
-
-
-        .j-navbar.logo-and-dropdowns .j-dropdown > .j-dropdown-menu {
-            max-height: 0;
-            overflow-y: hidden;
-            background: var(--dropdown-color);
-            transition: max-height 0.5s;
-            padding: 0 2em;
-            color: var(--dropdown-text-color);
-        }
-        .j-navbar.logo-and-dropdowns.j-large .j-dropdown-menu {
-            position: absolute;
-            left: 0;
-        }
-        .j-navbar.logo-and-dropdowns .j-dropdown.j-opened > .j-dropdown-menu {
-            margin-top: 0;
-            max-height: 100vh;
-        }
-        .j-navbar.logo-and-dropdowns.j-small .j-dropdown.j-opened > .j-dropdown-menu{
-        border-bottom: 3px solid var(--accent-color);
-        }
-
-
-        .j-navbar.logo-and-dropdowns .j-dropdown-menu > li:not(:last-child) {
-            border-bottom: 1px solid var(--accent-color);
-        }
-
-
-        .j-navbar.logo-and-dropdowns .j-dropdown-menu > li > a {
-            white-space: nowrap;
-            padding: 0.5em 1em;
-            transition: all 0.2s;
-        }
-        .j-navbar.logo-and-dropdowns .j-dropdown-menu > li > a:hover {
-            transform: scale(1.1);
-        }
-        .j-navbar.logo-and-dropdowns .j-dropdown-menu > li > a:active {
-            font-weight: bold;
-        }
-        .j-navbar.logo-and-dropdowns.j-small .j-dropdown-menu > li > a {
-            width: 100%;
-        }
-    </style>
-
-    <!-- FontAwesome Dependency -->
     <nav class="j-navbar logo-and-dropdowns">
-        <div class="j-container">
-            <a href="/" class="j-logo">
+        <div class="logo-container">
+            <a href="/" class="logo">
                 <img 
                     alt="company logo"
-                    src="https://peoplevine.blob.core.windows.net/media/949/category/2883/glitter.jpg" >
+                    src="images/neon-text.png" >
             </a>
             
 
-            <div class="j-menu-toggle">
-                <i class="fa fa-bars"></i>
+            <div class="menu-toggle" aria-label="menu toggle">
+                <i class="fa fa-bars" role="presentation" aria-hidden="true"></i>
             </div>
         </div>
 
         <ul class="j-nav">
             <li class="j-dropdown">
                 <a>
-                    Dropdown 1 <i role="presentation" aria-hidden="true" class="fa fa-caret-down"></i>
+                    Dropdown 1 <i class="fa fa-caret-down" role="presentation" aria-hidden="true"></i>
                 </a>
                 <ul class="j-dropdown-menu">
                     <li><a href="#">Option 1</a></li>
@@ -253,7 +44,7 @@
             <li><a href="#">Thing 2</a></li>
             <li class="j-dropdown">
                 <a>
-                    Dropdown 3 <i role="presentation" aria-hidden="true" class="fa fa-caret-down"></i>
+                    Dropdown 3 <i class="fa fa-caret-down" role="presentation" aria-hidden="true"></i>
                 </a>
                 <ul class="j-dropdown-menu">
                     <li><a href="#">Option 1</a></li>
@@ -267,7 +58,7 @@
             <li><a href="#">Thing 4</a></li>
             <li class="j-dropdown">
                 <a>
-                    Dropdown 5 <i role="presentation" aria-hidden="true" class="fa fa-caret-down"></i>
+                    Dropdown 5 <i class="fa fa-caret-down" role="presentation" aria-hidden="true"></i>
                 </a>
                 <ul class="j-dropdown-menu">
                     <li><a href="#">Option 1</a></li>
@@ -279,94 +70,7 @@
 
     </nav>
 
+    <script src="action.js"></script>
 
-    <script>
-        // Wrap in IIFE to hide variables and allow for return statement
-        (function() {
-            // Looks at all of the potential targets...
-            let navs = Array.from( document.querySelectorAll('.j-navbar.logo-and-dropdowns') )
-
-            // ...grabs the one that hasn't been registered yet
-            let target_nav = navs.find( (nav) => {
-                                return !nav.dataset.jRegistered
-                            })
-                            
-
-            // If all potential targets are accounted for, do nothing
-            if( !target_nav ) { return false }
-
-
-            // --- The Magic --- //
-            // Register
-            target_nav.dataset.jRegistered = "true"
-            
-            // Selection
-            let main_menu_toggle = target_nav.querySelector('.j-menu-toggle')
-            let dropdowns = [...target_nav.querySelectorAll('.j-dropdown') ]
-
-            // Start offs
-            target_nav.classList.add('j-closed')
-            let breaking_point = 800 // Media Query
-
-            // Event Handlers
-            main_menu_toggle.addEventListener('click', function() {
-                // Manual toggle since it's between two class names
-                if( target_nav.classList.contains('j-opened') ) { 
-                    target_nav.classList.remove('j-opened')
-                    target_nav.classList.add('j-closed')
-                }
-                else if( target_nav.classList.contains('j-closed') ) {
-                    target_nav.classList.remove('j-closed')
-                    target_nav.classList.add('j-opened')
-                }
-                else {
-                    // Worse case scenario, assume closed
-                    target_nav.classList.add('j-closed')
-                }
-            })
-
-            // Run at script loaded and window resize
-            set_display_classes()
-            window.onresize = set_display_classes
-
-            dropdowns.forEach( (dropdown) => {
-                dropdown.addEventListener('click', function() {
-                    this.classList.toggle('j-opened')
-
-                    let siblings = dropdowns.filter( (menu) => {
-                        return menu != this
-                    })
-
-                    siblings.forEach( (sibling) => {
-                        sibling.classList.remove('j-opened')
-                    })
-                })
-            })
-
-
-            // Responsiveness
-            function set_display_classes() {
-                // This nav is mobile first - so if small screen, not much to do
-                if( window.innerWidth < breaking_point ) { 
-                    target_nav.classList.remove('j-large')
-                    target_nav.classList.add('j-small')
-
-                    return false 
-                }
-                else {
-                    target_nav.classList.remove('j-small')
-                    target_nav.classList.add('j-large')
-                }
-            }
-            
-            
-        })()
-  
-    </script>
-
-
-
-
-    
 </body>
 </html>
