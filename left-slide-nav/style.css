@@ -1,0 +1,207 @@
+/*:: Customizer ::*/
+/* :: Presentation (optional) :: */
+body {
+    background: linear-gradient(to bottom right, #c0c0aa, #1cefff);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/*==========================================================================================*/
+
+/* :: Customizer :: */
+
+.main-nav {
+    --theme-font: Georgia, serif;
+    --accent-font: sans-serif;
+    
+    /* NOTE: When environment css variables are available, create a breakpoint variable for the media queries - 15 Feb 2019 */
+    /* NOTE: This variable is depended on in the JS - 19 Feb 2019 */
+    --breakpoint: 640px;
+}
+
+/*==========================================================================================*/
+
+/*:: Static Styling ::*/
+
+
+.main-nav {
+    background: white;
+    display: flex;
+    padding: 0 5vw;
+}
+@media screen and (max-width: 640px) {
+    .main-nav {
+        height: 50px; 
+        font-family: var(--accent-font);
+        text-transform: capitalize;
+        font-size: 20px;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px;
+    }
+}
+@media screen and (min-width: 641px) {
+    .main-nav {
+        font-family: var(--theme-font);
+        text-transform: uppercase;
+        height: 100px; 
+        align-items: center;
+        font-size: 15px;
+    }
+}
+
+
+.main-nav a {
+    color: inherit;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+}
+.main-nav i {
+    font-size: 22px;
+}
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+}
+.main-nav button {
+    border: none;
+    background: transparent;
+    font-size: 22px;
+}
+
+
+@media screen and (max-width: 640px) {
+    .main-nav a.search {
+        display: inline-block;
+        box-sizing: border-box;
+        border: 2px solid transparent;
+        padding: 5px;
+    }
+    
+    .main-nav a.search:active {
+        border-color: black;
+    }
+}
+@media screen and (min-width: 641px) {
+    .main-nav a.search {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 640px) {
+    .main-nav > .logo > img {
+        width: 80px; 
+    }
+}
+@media screen and (min-width: 641px) {
+    .main-nav > .logo > img {
+        width: 165px; 
+    }
+}
+
+
+@media screen and (max-width: 640px) {
+    .main-nav button.open-menu,
+    .main-nav button.close-menu {
+        display: inline-block;
+        box-sizing: border-box;
+        border: 2px solid transparent;
+    }
+    
+    .main-nav button.open-menu:active {
+        border-color: black;
+    }
+    
+    .main-nav button.close-menu {
+        position: absolute;
+        right: -9vw;
+        top: 9vh;
+        color: white;
+        transform: translateX(50%);
+    }
+    
+    .main-nav button.close-menu:active {
+        border-color: white;
+    }
+}
+@media screen and (min-width: 641px) {
+    .main-nav button.open-menu,
+    .main-nav button.close-menu {
+        display: none;
+    }
+}
+
+
+
+
+.main-nav > .nav-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+@media screen and (max-width: 640px) {
+    .main-nav > .nav-list {
+        flex-direction: column;
+        position: fixed;
+        width: 100vw;
+        height: 100%;
+        background: white;
+        border-right: 18vw solid rgba(0,0,0, 0.8);
+        box-sizing: border-box;
+        padding: 9vh 11vw;
+        top: 0;
+        z-index: 10;
+        
+        transition: left 0.5s;
+        left: -100%; /* To avoid visual jumps */
+    }
+    
+    .main-nav > .nav-list[data-state="open"] {
+        left: 0;
+    }
+    .main-nav > .nav-list[data-state="closed"] {
+        left: -100%;
+    }
+}
+@media screen and (min-width: 641px) {
+    .main-nav > .nav-list {
+        width: 100%;
+        flex-direction: row;
+    }
+}
+
+
+@media screen and (max-width: 640px) {
+    .main-nav > .nav-list > li {
+        margin: 0.5em 0;
+    }
+    
+    .main-nav > .nav-list > li:not(:last-of-type) {
+        margin-right: 0;
+    }
+  
+    .main-nav > .nav-list > li:last-of-type {
+        margin-left: 0;
+        margin-top: 1em;
+        color: gray;
+    }
+}
+@media screen and (min-width: 641px) {
+    .main-nav > .nav-list > li:not(:last-of-type) {
+        margin-right: 30px;
+    }
+    
+    .main-nav > .nav-list > li:last-of-type {
+        margin-left: auto;
+    }
+}
+
+
+.main-nav > .nav-list > li > a:hover,
+.main-nav > .nav-list > li > a:focus,
+.main-nav > .nav-list > li > a:active {
+    transform: scale(1.1);
+}
+
