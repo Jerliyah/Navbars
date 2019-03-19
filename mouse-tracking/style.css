@@ -1,0 +1,303 @@
+/*:: Asset Import ::*/
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url("https://peoplevine.blob.core.windows.net/media/974/ProximaNova-Reg.otf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url("https://peoplevine.blob.core.windows.net/media/974/ProximaNova-Sbold.otf");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Proxima Nova';
+    src: url("https://peoplevine.blob.core.windows.net/media/974/ProximaNova-Black.otf");
+    font-weight: 900;
+}
+
+
+/*:: Company Brand Variables ::*/
+:root {
+    --primary-color: black;
+    --secondary-color: white;
+    --accent-color: #ff5500;
+    
+    --grey: #232323;
+    --light-grey: #9b9b9b;
+    
+    --primary-font: 'Proxima Nova'
+}
+
+
+
+/*:: General Styling ::*/
+body {
+    font-family: var(--primary-font);
+    margin: 0;
+    padding: 0;
+    color: var(--secondary-color);
+}
+
+body, body * {
+  box-sizing: border-box;
+}
+
+script {
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 900;
+}
+
+p {
+    font-weight: 700;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+.content {
+    margin-top: 12vh; /* Correlates with the height of the navbar */
+    height: 100vh;
+}
+
+
+
+/*:: Nav Styling ::*/
+nav.j {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+nav.j, nav.j * {
+  z-index: 100;
+}
+
+
+nav.j > section {
+    background: rgba(0,0,0, 0.5);
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 2vh;
+}
+
+nav.j .logo {
+    padding: 1vh;
+}
+
+nav.j .logo > img {
+  height: 100%;
+  height: 10vh;
+  min-height: 60px;
+  min-width: 60px;
+}
+
+nav.j .menu-toggle {
+    background: var(--primary-color);
+    border: none;
+    height: 33px;
+    width: 33px;
+    font-size: 100%;
+    color: var(--secondary-color);
+}
+
+nav.j .menu-toggle:hover,
+nav.j .menu-toggle:focus {
+    color: var(--accent-color);
+}
+
+
+nav.j .member-login {
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    margin-left: auto;
+    margin-right: 1vh;
+    font-weight: 700;
+}
+
+nav.j .member-login:hover,
+nav.j .member-login:focus {
+    color: var(--accent-color);
+}
+
+nav.j[data-state="menu-is-open"] .member-login {
+    display: inline-block;
+}
+nav.j[data-state="menu-is-closed"] .member-login {
+    display: none;
+}
+
+nav.j > .menu {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("https://peoplevine.blob.core.windows.net/media/974/menu-background.jpg");
+    background-position: center; /* ::NOTE:: This will get changed by JS */
+    transition: opacity 0.5s;
+    padding-top: 12vh;
+    padding-left: 2vh;
+    
+}
+
+nav.j > .menu[data-state="closed"] {
+    z-index: -100;
+    opacity: 0;
+    margin-left: -100%;
+}
+nav.j > .menu[data-state="open"] {
+    opacity: 1;
+    z-index: 99; /* One level less than the navbar */
+    margin-left: 0;
+}
+
+nav.j > .menu li {
+    margin: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: margin-top 1s;
+}
+
+nav.j > .menu[data-state="closed"] li {
+    margin-top: 100%;
+}
+
+nav.j > .menu[data-state="open"] li {
+    margin-top: 15px;
+}
+
+nav.j > .menu a {
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    font-size: 3vh;
+    font-weight: 900;
+}
+
+nav.j > .menu a:hover::before,
+nav.j > .menu a:focus::before {
+    content: '';
+    background: url('https://peoplevine.blob.core.windows.net/media/974/block-decoration.png');
+    height: 21px;
+    display: inline-block;
+    animation: expand 0.5s forwards;
+}
+@keyframes expand {
+    from { width: 0; margin-right: 0;}
+    to { width: 21px; margin-right: 0.5em;}
+}
+
+
+
+/*:: Footer Styling ::*/
+footer.j {
+    --space: 35px;
+    
+    display: grid;
+    grid-gap: var(--space);
+    background: var(--grey);
+    padding: calc(2 * var(--space)) var(--space);
+    text-transform: uppercase;
+}
+@media screen and (max-width: 370px) {
+    footer.j {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+    }
+}
+@media screen and (min-width: 371px) and (max-width: 750px) {
+    footer.j {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+}
+@media screen and (min-width: 751px) {
+    footer.j {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+footer.j p,
+footer.j a {
+  font-weight: 900;
+}
+
+footer.j > * {
+    border-top: 2px solid var(--secondary-color);
+    padding-top: calc(var(--space) / 2);
+}
+
+footer.j > * > *:first-child {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+footer.j .social li {
+  display: inline-block;
+  font-size: 2em;
+  margin: 0 10px;
+}
+
+footer.j .social a:hover {
+    color: var(--light-grey);
+}
+
+footer.j .sign-up form {
+    width: 100%;
+    height: 34px;
+    display: flex;
+}
+
+footer.j .sign-up form input[type="email"] {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+footer.j .sign-up button {
+    color: var(--accent-color);
+    height: 100%;
+    width: 20px;
+    margin-left: -20px;
+    padding: 0;
+    font-size: 24px;
+    background: transparent;
+    border: none;
+}
+
+footer.j .info img {
+  width: 100%;
+}
+
+footer.j .info a {
+    color: var(--accent-color);
+}
+
+footer.j nav {
+    line-height: 2em;
+}
+
+footer.j nav a:hover,
+footer.j nav a:focus {
+    color: var(--light-grey);
+}
