@@ -25,6 +25,7 @@
             min-height: 100vh;
             padding: 0;
             margin: 0;
+            background: linear-gradient(to bottom, pink, lightblue);
         }
         /* End of general page stuff */
 
@@ -45,11 +46,6 @@
 
             --theme-1: #75b4bb;
             --theme-2: #c56367;
-        }
-
-        /* Whatever the next sibling is (should be a container for content) */
-        #full-nav-ctn + * {
-            margin-top: 96px;
         }
 
         nav {
@@ -128,7 +124,7 @@
         .bottom.nav {
             color: white;
             font-weight: bold;
-            background: var(--theme-3);
+            background: var(--bottom-nav-background);
         }
 
         .bottom.nav .menu {
@@ -141,7 +137,7 @@
 
         .sub.nav {
             margin-top: -1em;
-            background: var(--theme-2);
+            background: var(--dropdown-background);
             padding: 1em 0;
             display: block;
             opacity: 0;
