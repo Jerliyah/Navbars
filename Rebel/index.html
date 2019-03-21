@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Rebel</title>
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+</head>
+<body>
+    <nav class="j">
+        <section>
+            <a href="/" class="logo">
+                <img 
+                    alt="Rebellious logo"
+                    src="https://peoplevine.blob.core.windows.net/media/980/rebellious-logo-black.png " >
+            </a>
+            
+
+            <div class="menu-toggle" aria-label="menu toggle">
+                <i class="fa fa-bars" role="presentation" aria-hidden="true"></i>
+            </div>
+            
+            <!--::NOTE:: There are two shop buttons for the sake of responsive change in vidual design-->
+            <a href="" class="shop">shop</a>
+        </section>
+
+        <ul class="options">
+            <li class="has-dropdown">
+                <a> about </a>
+                <ul class="dropdown">
+                    <li><a href="#">press release</a></li>
+                </ul>
+            </li>
+            
+            <li class="has-dropdown">
+                <a> products </a>
+                <ul class="dropdown">
+                    <li><a href="#">all flavors</a></li>
+                    <li><a href="#">peach</a></li>
+                    <li><a href="#">lemon</a></li>
+                    <li><a href="#">mint with lemongrass</a></li>
+                    <li><a href="#">blood orange</a></li>
+                    <li><a href="#">strawberry kiwi</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="#">faq</a></li>
+            
+            <li class="has-dropdown">
+                <a> follow us </a>
+                <ul class="dropdown">
+                    <li><a href="#">instagram</a></li>
+                    <li><a href="#">facebook</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="#">login</a></li>
+        </ul>
+        
+        <!--::NOTE:: There are two shop buttons for the sake of responsive change in vidual design-->
+        <a href="" class="shop">shop</a>
+        
+        <script class="j_brings-nav-to-life">
+            (function() {
+
+                // Select
+                let nav = document.querySelector('nav.j')
+                let main_menu_toggle = nav.querySelector('.menu-toggle')
+                let dropdown_triggers = [...nav.querySelectorAll('.has-dropdown') ]
+
+          
+                // Assess
+                function determine_screen_size() {
+                  let break_point = 800
+                  nav.dataset.size = (window.innerWidth < break_point ?  'small' : 'large')
+                  
+                  switch( nav.dataset.size ) {
+                      case 'large': nav.removeAttribute('data-state'); break;
+                      case 'small': nav.dataset.state = 'closed'; break;
+                      default: nav.dataset.state = 'closed'
+                  }
+                  
+                  determine_trigger_type()
+                }
+                
+                function determine_trigger_type() {
+                    dropdown_triggers.forEach( (trigger) => {
+                      
+                        // Ensures it has a state
+                        if( !trigger.hasAttribute('data-state') ) {
+                            trigger.dataset.state = 'closed'
+                        }
+                        
+                        switch( nav.dataset.size ) {
+                            case 'large':
+                                trigger.addEventListener('mouseenter', () => {
+                                    trigger.dataset.state = 'open'
+                                })
+                                
+                                trigger.addEventListener('mouseleave', () => {
+                                    trigger.dataset.state = 'closed'
+                                })
+                                break;
+                              
+                            case 'small':
+                                trigger.addEventListener('click', () => {
+                                    let current_state = trigger.dataset.state
+                                    trigger.dataset.state = ( current_state === 'closed' ?  'open' : 'closed')
+                                })
+                                break;
+                        }
+                        
+                    })
+                }
+
+            
+                // Listen
+                determine_screen_size() /* on load */
+                
+                window.addEventListener('resize', determine_screen_size)
+                
+                  // ::NOTE:: Main_menu_toggle only appears for smaller screens
+                main_menu_toggle.addEventListener('click', function() {
+                    switch( nav.dataset.state ) {
+                        case 'open':   nav.dataset.state = 'closed'; break;
+                        case 'closed': nav.dataset.state = 'open';   break;
+                        default:       nav.dataset.state = 'closed';
+                    }
+                })
+  
+            })()
+        </script>
+
+    </nav>
+
+    <!-- --------------------------------------------->
+    <div id="content"></div>
+    <!-- --------------------------------------------->
+
+    <footer class="j">
+        <ul class="social">
+            <li><a href="https://www.instagram.com/drinkrebellious/" class="instagram" aria-label="instagram">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+            </a></li>
+            
+            <li><a href="https://www.facebook.com/drinkrebellious/" class="facebook" aria-label="facebook">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a></li>
+            
+            <li><a href="https://twitter.com/DrinkRebellious" class="twitter" aria-label="twitter">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a></li>
+            
+            <!--::TODO:: This is for general contact - how does the client want this experience?-->
+            <li><a href="#" class="email" aria-label="email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+            </a></li>
+        </ul>
+        
+        <section class="info">
+            <p>
+                copyright 2019 REBELLIOUS BEVERAGE COMPANY
+            </p>
+            <a href="" class="privacy-policy">
+                privacy policy
+            </a>
+        </section>
+    </footer>
+</body>
+</html>

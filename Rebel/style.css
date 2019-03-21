@@ -1,0 +1,453 @@
+/* Asset Import */
+
+@font-face {
+    font-family: Roboto-Slab-Bold;
+    src: url('https://peoplevine.blob.core.windows.net/media/980/RobotoSlab-Bold.ttf');
+  }
+  
+  
+  @font-face {
+      font-family: Chalkduster;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Chalkduster.ttf');
+  }
+  
+  
+  @font-face {
+      font-family: Montana-Rouughen-Press;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Montana-Rouughen-Press.otf');
+  }
+  
+  
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Light.ttf');
+      font-weight: 200;
+      font-style: normal;
+  }
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Light-Italic.ttf');
+      font-weight: 200;
+      font-style: italic;
+  }
+  
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Regular.ttf');
+      font-weight: 400;
+      font-style: normal;
+  }
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Italic.ttf');
+      font-weight: 400;
+      font-style: italic;
+  }
+  
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Medium.ttf');
+      font-weight: 500;
+      font-style: normal;
+  }
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Medium-Italic.ttf');
+      font-weight: 500;
+      font-style: italic;
+  }
+  
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Semibold.ttf');
+      font-weight: 600;
+      font-style: normal;
+  }
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Semibold-Italic.ttf');
+      font-weight: 600;
+      font-style: italic;
+  }
+  
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Bold.ttf');
+      font-weight: 700;
+      font-style: normal;
+  }
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Bold-Italic.ttf');
+      font-weight: 700;
+      font-style: italic;
+  }
+  
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Heavy.ttf');
+      font-weight: 800;
+      font-style: normal;
+  }
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Heavy-Italic.ttf');
+      font-weight: 800;
+      font-style: italic;
+  }
+  
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Black.ttf');
+      font-weight: 900;
+      font-style: normal;
+  }
+  @font-face {
+      font-family: Lato;
+      src: url('https://peoplevine.blob.core.windows.net/media/980/Lato-Black-Italic.ttf');
+      font-weight: 900;
+      font-style: italic;
+  }
+  
+  
+  /* ====================================================== */
+  
+  
+  
+  /* :: Customizer :: */
+  :root {
+      --primary-color: #333333;
+      --secondary-color: white;
+      
+      --blood-orange: #C94D35;
+      --mint: #81B69D;
+      --lemon: #F7E838;
+      --peach: #ED8A58;
+      --strawberry-kiwi: #59B254;
+      
+      --content-font: Lato, sans-serif;
+      --headlines-font: Roboto-Slab-Bold, serif;
+      --graffiti-font: Chalkduster, Georgia, serif;
+      --logo-font: Montana-Rouughen-Press, Arial, serif;
+  }
+  
+  
+  nav.j {
+      --theme-color: var(--primary-color);
+      --accent-color:#61CE70;
+      --dropdown-color: black;
+      --nav-bg: white;
+      --menu-text-color: #333333;
+      --dropdown-text-color: white;
+      --number-of-options: 5;
+      --font: var(--content-font);
+  }
+  
+  footer.j {
+      --font: var(--content-font)
+  }
+  
+  
+  
+  
+  /* ====================================================== */
+  
+  
+  
+  /* :: Static styling :: */
+  
+  body {
+      margin: 0;
+      padding: 0;
+  }
+
+  body, body * {
+      box-sizing: border-box;
+  }
+
+  #content {
+      height: 80vh;
+      background: linear-gradient(to bottom, lightblue, pink);
+  }
+  
+  /* ------------------------------------------------------- */
+  
+  nav.j {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: grid;
+      align-items: center;
+      background: var(--nav-bg);
+      box-shadow: 0 5px 20px #e6e6e6;
+      width: 100%;
+      height: 120px;
+      z-index: 100;
+      text-transform: uppercase;
+      font-family: var(--font);
+  }
+  nav.j[data-size="large"] {
+      grid-template-columns: auto 1fr auto;
+      padding: 0 5vw;
+  }
+  
+  
+  nav.j a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+  }
+  nav.j ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+  }
+  
+  
+  nav.j > section {
+      position: relative;
+      display: grid;
+      align-items: center;
+      justify-items: center;
+  }
+  nav.j[data-size="small"] > section {
+      background: var(--nav-bg);
+      z-index: 120;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 0 5vw;
+  }
+  nav.j[data-size="large"] > section {
+      grid-template-columns: 1fr;
+  }
+  
+  
+  nav.j[data-size="small"] .logo > img {
+      max-height: 60px;
+  }
+  nav.j[data-size="large"] .logo > img {
+      max-height: 120px;
+  }
+  
+  
+  nav.j .menu-toggle {
+      display: none;
+      padding: 0.5em 1em;
+      border-radius: 5px;
+      background: var(--theme-color);
+      color: white;
+      padding: 0.5em 0.75em;
+  }
+  nav.j[data-size="small"] .menu-toggle {
+      display: inline-block;
+  }
+  
+  
+  nav.j a.shop {
+      background: var(--theme-color);
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: 2.1px;
+  }
+  
+  nav.j[data-size="small"] > a.shop {
+      display: none;
+  }
+  nav.j[data-size="large"] > a.shop {
+      display: inline-block;
+      padding: .75em 1.75em;
+  }
+  nav.j[data-size="small"] > section >  a.shop {
+      display: inline-block;
+      padding: 0.5em 1em;
+  }
+  nav.j[data-size="large"] > section > a.shop {
+      display: none;
+  }
+  
+  
+  nav.j[data-size="small"] .options {
+      position: relative;
+      width: 100%;
+      text-align: left;
+      position: relative;
+      z-index: 110;
+      transform-origin: 50% top;
+      transition: transform 0.5s;
+      background: var(--dropdown-color);
+      
+  }
+  nav.j[data-state="open"] .options {
+      transform: rotateX(0deg);
+  }
+  nav.j[data-state="closed"] .options {
+      transform: rotateX(90deg);
+  }
+  nav.j[data-size="large"] .options {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+      width: 100%;
+      padding: 0 5vw;
+  }
+  
+  
+  nav.j .options > li {
+      position: relative;
+  }
+  nav.j[data-size="small"] .options > li {
+      color: white;
+      font-size: 11px;
+  }
+  nav.j[data-size="large"] .options > li {
+      color: var(--menu-text-color);
+      font-weight: 800;
+      letter-spacing: 2px;
+      font-size: 15px;
+  }
+  
+  
+  nav.j .options > li > a {
+      padding: 10px;
+      width: 100%;
+      color: inherit;
+      font-size: 14px;
+  }
+  nav.j[data-size="small"] .options > li > a {
+      width: 100%;
+  }
+  nav.j[data-size="small"] .options > li > a:hover,
+  nav.j[data-size="small"] .options > li > a:focus,
+  nav.j[data-size="small"] .options > li[data-state="open"] > a {
+      background: rgba(255,255,255, 0.5);
+  }
+  nav.j[data-size="large"] .options > li > a {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      border-bottom: 3px solid transparent;
+  }
+  nav.j[data-size="large"] .options > li > a:hover,
+  nav.j[data-size="large"] .options > li > a:focus,
+  nav.j[data-size="large"] .options > li[data-state="open"] > a {
+      border-bottom-color: var(--accent-color);
+  }
+  
+  
+  nav.j .has-dropdown > .dropdown {
+      background: var(--dropdown-color);
+      color: var(--dropdown-text-color);
+      max-height: 0;
+      overflow-y: hidden;
+      transition: max-height 0.5s;
+  }
+  nav.j[data-size="large"] .has-dropdown > .dropdown {
+      position: absolute;
+      left: 0;
+  }
+  nav.j .has-dropdown[data-state="open"] > .dropdown {
+      margin-top: 0;
+      max-height: 100vh;
+  }
+  
+  
+  nav.j .dropdown > li > a {
+      white-space: nowrap;
+      padding: 1em 2em;
+      transition: background 0.2s;
+      width: 100%;
+      font-size: 12px;
+  }
+  nav.j .dropdown > li > a:hover,
+  nav.j .dropdown > li > a:focus {
+      background: rgba(255,255,255, 0.5);
+  }
+  
+  /* ------------------------------------------------------- */
+  
+  footer.j {
+      font-family: var(--font);
+  }
+  
+  footer.j a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+  }
+  footer.j ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+  }
+  
+  footer.j > .social {
+      background: var(--primary-color);
+      color: white;
+      display: flex;
+      justify-content: center;
+      padding: 5vh 0;
+  }
+  
+  footer.j > .social a {
+      font-size: 32px;
+      border-radius: 5px;
+      height: 45px;
+      width: 45px;
+      margin: 3px;
+      display: flex;
+      transition: background 0.3s
+  }
+  
+  footer.j > .social a.instagram:hover,
+  footer.j > .social a.instagram:focus {
+      background: black;
+  }
+  footer.j > .social a.facebook:hover,
+  footer.j > .social a.facebook:focus {
+      background: #3b5998;
+  }
+  footer.j > .social a.twitter:hover,
+  footer.j > .social a.twitter:focus {
+      background: #1da1f2;
+  }
+  footer.j > .social a.email:hover,
+  footer.j > .social a.email:focus {
+      background: #ea4335;
+  }
+  
+  footer.j > .social a > * {
+      margin: auto;
+  }
+  
+  footer.j > .info {
+      background: var(--secondary-color);
+      text-align: center;
+      padding: 5vh 0;
+      letter-spacing: 2px;
+  }
+  
+  footer.j > .info > *:first-child {
+      margin-bottom: 5vh;
+  }
+  
+  footer.j > .info .privacy-policy {
+      font-weight: 800;
+      text-transform: uppercase;
+  }
+  
+  #pvFooter {
+      text-align: center;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
